@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "497762225739",
+    "firebase_url": "https://fir-ecommerce-app-f3e26-default-rtdb.firebaseio.com",
+    "project_id": "fir-ecommerce-app-f3e26",
+    "storage_bucket": "fir-ecommerce-app-f3e26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497762225739:android:739a737cf1098ab41007ce",
+        "android_client_info": {
+          "package_name": "com.example.firebase_ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497762225739-ho2jao0t0u9sn4st4rjtun8rq0teaboe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_ecommerce",
+            "certificate_hash": "16f4d7ea9f0fcf0cf8de3b4052bf92e3e4be18f7"
+          }
+        },
+        {
+          "client_id": "497762225739-0p0ievnqdbdkbrhvthecdo0nkq3vm8k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-09Lv8bP0lXXwPZZFvxEiG_-SewtDhvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497762225739-0p0ievnqdbdkbrhvthecdo0nkq3vm8k8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497762225739:android:51df639dc7dfd42d1007ce",
+        "android_client_info": {
+          "package_name": "com.example.food_mart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497762225739-eu44qlvobqm5isfhdk4qi8jvh74nfq6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_mart",
+            "certificate_hash": "16f4d7ea9f0fcf0cf8de3b4052bf92e3e4be18f7"
+          }
+        },
+        {
+          "client_id": "497762225739-0p0ievnqdbdkbrhvthecdo0nkq3vm8k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-09Lv8bP0lXXwPZZFvxEiG_-SewtDhvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497762225739-0p0ievnqdbdkbrhvthecdo0nkq3vm8k8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

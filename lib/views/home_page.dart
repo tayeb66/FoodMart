@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       width: 160,
       decoration: BoxDecoration(
         color: Colors.white70,
-        borderRadius: BorderRadius.circular(6.0),
+        borderRadius: BorderRadius.all(Radius.circular(6.0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +25,13 @@ class _HomePageState extends State<HomePage> {
           Expanded(
               flex: 2,
               child: Image.network(
-                  'https://atlas-content-cdn.pixelsquid.com/stock-images/fresh-basil-leafs-mr3mzw4-600.jpg')),
+
+                  'https://atlas-content-cdn.pixelsquid.com/stock-image'
+                      's/fresh-basil-leafs-mr3mzw4-600.jpg',
+                height: 230,
+                width: 160,
+                fit: BoxFit.cover,
+                )),
           Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

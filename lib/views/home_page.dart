@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_mart/views/single_product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,125 +10,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  Widget singleProduct(){
-    return  Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.0),
-      height: 230,
-      width: 160,
-      decoration: BoxDecoration(
-        color: Colors.white70,
-        borderRadius: BorderRadius.all(Radius.circular(6.0)),
+  
+  Widget lisTile(IconData icon, String title) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        size: 32,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              flex: 2,
-              child: Image.network(
-
-                  'https://atlas-content-cdn.pixelsquid.com/stock-image'
-                      's/fresh-basil-leafs-mr3mzw4-600.jpg',
-                height: 230,
-                width: 160,
-                fit: BoxFit.cover,
-                )),
-          Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Text(
-                      'Fresh basil',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15),
-                    ),
-                    Text(
-                      '\$50/50 gram',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 30,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  //color: Colors.black,
-                                    borderRadius:
-                                    BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    )),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 2,
-                                        child: Container(
-                                          margin: EdgeInsets.only(
-                                              left: 2),
-                                          child: Text(
-                                            '50 Gram',
-                                            style: TextStyle(
-                                                fontSize: 10),
-                                          ),
-                                        )),
-                                    Expanded(
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          size: 20,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Expanded(
-                                child: Container(
-                                  height: 30,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(8),
-                                      border:
-                                      Border.all(color: Colors.grey)),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Icon(
-                                            Icons.remove,
-                                            size: 20,
-                                            color: Colors.green,
-                                          )),
-                                      Expanded(
-                                          child: Text(
-                                            '1',
-                                            style: TextStyle(
-                                              color: Colors.green,
-                                            ),
-                                          )),
-                                      Expanded(
-                                          child: Icon(
-                                            Icons.add,
-                                            size: 20,
-                                            color: Colors.green,
-                                          )),
-                                    ],
-                                  ),
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )),
-        ],
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.black54),
       ),
     );
   }
@@ -136,7 +28,84 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xF5F1F1FF),
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: Container(
+            //color: Color(0xFF81C784),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                    child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 35.0,
+                      backgroundColor: Colors.deepOrange,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Welcome guest',
+                          textScaleFactor: 1.2,
+                        ),
+                        Container(
+                          height: 30,
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Login',
+                              style: TextStyle(color: Colors.white70),
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              //side: BorderSide(width: 1.0),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                )),
+                lisTile(Icons.home, 'home'),
+                lisTile(Icons.shop_outlined, 'Review cart'),
+                lisTile(Icons.person_outlined, 'Profile'),
+                lisTile(Icons.notifications_outlined, 'Notification'),
+                lisTile(Icons.star_outlined, 'Rating & Review'),
+                lisTile(Icons.favorite_outlined, 'Wishlist'),
+                lisTile(Icons.copy_outlined, 'Raise a complain'),
+                lisTile(Icons.format_quote_outlined, 'FAQS'),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Contact us',
+                        textScaleFactor: 1.2,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Call us: +008-1776670606',
+                        textScaleFactor: 1.2,
+                      ),
+                      Text(
+                        'Email us: someone@email.com',
+                        textScaleFactor: 1.2,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.green,
@@ -262,11 +231,26 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                     singleProduct(),
-                     singleProduct(),
-                     singleProduct(),
-                     singleProduct(),
-                     singleProduct(),
+                      SingleProduct(
+                          productImage:
+                              'https://thumbs.dreamstime.com/b/fresh-green-basil-leaves-closeup-perfect-fresh-basil-leaves-isolated-white-background-shadows-png-file-210754810.jpg',
+                          productName: 'Fresh basil',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=',
+                          productName: 'Fresh mint',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://thumbs.dreamstime.com/b/fresh-green-basil-leaves-closeup-perfect-fresh-basil-leaves-isolated-white-background-shadows-png-file-210754810.jpg',
+                          productName: 'Fresh basil',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=',
+                          productName: 'Fresh mint',
+                          ontap: () {}),
                     ],
                   ),
                 ),
@@ -277,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Herbs seasoning',
+                          'Fresh fruits',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         Text(
@@ -292,11 +276,26 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
+                      SingleProduct(
+                          productImage:
+                              'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
+                          productName: 'Fresh Berries',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiYE8TB_MqtYOK3zH7YgvQp8W2NWf_6VsDTA&usqp=CAU',
+                          productName: 'Fresh watermelon',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
+                          productName: 'Fresh Berries',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiYE8TB_MqtYOK3zH7YgvQp8W2NWf_6VsDTA&usqp=CAU',
+                          productName: 'Fresh watermelon',
+                          ontap: () {}),
                     ],
                   ),
                 ),
@@ -307,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Herbs seasoning',
+                          'Fresh fruits',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         Text(
@@ -322,11 +321,25 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
-                      singleProduct(),
+                      SingleProduct(
+                          productImage:
+                              'https://www.kindpng.com/picc/m/192-1921614_mango-pulp-and-juice-transparent-mango-fruit-png.png',
+                          productName: 'Fresh mango',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://5.imimg.com/data5/IP/BO/MY-40565349/litchi-fruit-500x500.jpg',
+                          productName: 'Fresh lychee',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:
+                              'https://www.kindpng.com/picc/m/206-2064665_apple-green-apple-red-apple-fresh-apple-fresh.png',
+                          productName: 'Fresh apple',
+                          ontap: () {}),
+                      SingleProduct(
+                          productImage:'https://www.kindpng.com/picc/m/5-52713_transparent-orange-juice-png-orange-juice-png-png.png',
+                          productName: 'Fresh orange',
+                          ontap: () {}),
                     ],
                   ),
                 ),

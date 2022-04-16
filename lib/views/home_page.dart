@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xF5F1F1FF),
+        /// Drawer
         drawer: MyDrawer(),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                /// Carousel Image, logo
                 Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
@@ -66,55 +68,53 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                           flex: 1,
-                          child: Container(
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 120),
-                                  child: Container(
-                                    height: 50,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xFF81C784),
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(50),
-                                        )),
-                                    child: Center(
-                                      child: Text(
-                                        'Vegi',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                            shadows: [
-                                              BoxShadow(
-                                                  color: Colors.green,
-                                                  offset: Offset(3, 3),
-                                                  blurRadius: 3.0)
-                                            ]),
-                                      ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 120),
+                                child: Container(
+                                  height: 50,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFF81C784),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(50),
+                                      )),
+                                  child: Center(
+                                    child: Text(
+                                      'Vegi',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          shadows: [
+                                            BoxShadow(
+                                                color: Colors.green,
+                                                offset: Offset(3, 3),
+                                                blurRadius: 3.0)
+                                          ]),
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  '30% off',
-                                  style: TextStyle(
-                                    fontSize: 40,
-                                    color: Color(0xFFE8F5E9),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ),
+                              Text(
+                                '30% off',
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Color(0xFFE8F5E9),
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Text(
-                                  'On all vegitables product',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
+                              ),
+                              Text(
+                                'On all vegitables product',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
                           )),
                       Expanded(child: Container()),
                     ],
@@ -138,10 +138,13 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+
+                /// Single Product
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      /// Data show from SingleProduct Class
                       SingleProduct(
                           productImage:
                               'https://thumbs.dreamstime.com/b/fresh-green-basil-leaves-closeup-perfect-fresh-basil-leaves-isolated-white-background-shadows-png-file-210754810.jpg',
@@ -187,6 +190,7 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      /// Data show from SingleProduct Class
                       SingleProduct(
                           productImage:
                               'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
@@ -232,6 +236,7 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      /// Data show from SingleProduct Class
                       SingleProduct(
                           productImage:
                               'https://www.kindpng.com/picc/m/192-1921614_mango-pulp-and-juice-transparent-mango-fruit-png.png',

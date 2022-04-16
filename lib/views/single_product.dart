@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SingleProduct extends StatelessWidget {
+
+  /// Repeatedly using this fields for image,name,onTap
   String productName;
   String productImage;
   Function ontap;
@@ -14,17 +16,19 @@ class SingleProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Create like card using Container()
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.0),
+      margin: const EdgeInsets.symmetric(horizontal: 5.0),
       height: 230,
       width: 160,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white70,
         borderRadius: BorderRadius.all(Radius.circular(6.0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// Product image
           Expanded(
               flex: 2,
               child: Image.network(
@@ -33,6 +37,7 @@ class SingleProduct extends StatelessWidget {
                 width: 160,
                 fit: BoxFit.cover,
               )),
+          /// Product name
           Expanded(
               child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -42,15 +47,19 @@ class SingleProduct extends StatelessWidget {
                   productName,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
+                /// Quantity & price
                 Text(
                   '\$50/50 gram',
                   style: TextStyle(color: Colors.grey),
                 ),
+
+                /// Two button create horizontally
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Row(
                       children: [
+                        /// Button 1
                         Expanded(
                           child: Container(
                             height: 30,
@@ -84,6 +93,8 @@ class SingleProduct extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
+
+                        /// Button 2
                         Expanded(
                             child: Container(
                           height: 30,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_mart/views/drawer_page.dart';
 import 'package:food_mart/views/single_product.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,102 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  Widget lisTile(IconData icon, String title) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        size: 32,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.black54),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xF5F1F1FF),
-        drawer: Drawer(
-          child: Container(
-            //color: Color(0xFF81C784),
-            child: ListView(
-              children: [
-                DrawerHeader(
-                    child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 35.0,
-                      backgroundColor: Colors.deepOrange,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Welcome guest',
-                          textScaleFactor: 1.2,
-                        ),
-                        Container(
-                          height: 30,
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Login',
-                              style: TextStyle(color: Colors.white70),
-                            ),
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.green,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              //side: BorderSide(width: 1.0),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                )),
-                lisTile(Icons.home, 'home'),
-                lisTile(Icons.shop_outlined, 'Review cart'),
-                lisTile(Icons.person_outlined, 'Profile'),
-                lisTile(Icons.notifications_outlined, 'Notification'),
-                lisTile(Icons.star_outlined, 'Rating & Review'),
-                lisTile(Icons.favorite_outlined, 'Wishlist'),
-                lisTile(Icons.copy_outlined, 'Raise a complain'),
-                lisTile(Icons.format_quote_outlined, 'FAQS'),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Contact us',
-                        textScaleFactor: 1.2,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Call us: +008-1776670606',
-                        textScaleFactor: 1.2,
-                      ),
-                      Text(
-                        'Email us: someone@email.com',
-                        textScaleFactor: 1.2,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        drawer: MyDrawer(),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.green,

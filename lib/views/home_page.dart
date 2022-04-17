@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_mart/Constant/constant.dart';
 import 'package:food_mart/views/Product_View/product_detail.dart';
 import 'package:food_mart/views/drawer_page.dart';
 import 'package:food_mart/views/single_product.dart';
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xF5F1F1FF),
+        backgroundColor: bgColor,
         /// Drawer
         drawer: MyDrawer(),
         appBar: AppBar(

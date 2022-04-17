@@ -4,7 +4,12 @@ import 'package:food_mart/Constant/constant.dart';
 enum SingleCharacter { fill, outline }
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+  final String productName;
+  final String productImage;
+
+  const ProductDetail(
+      {Key? key, required this.productName, required this.productImage})
+      : super(key: key);
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -17,28 +22,28 @@ class _ProductDetailState extends State<ProductDetail> {
   Widget bottomNavigationBar(Color iconColor, Color bgColor, Color textColor,
       String title, IconData iconData) {
     return Expanded(
-      flex: 1,
+        flex: 1,
         child: Container(
-      padding: EdgeInsets.all(17),
-      color: bgColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            iconData,
-            size: 20,
-            color: iconColor,
+          padding: EdgeInsets.all(17),
+          color: bgColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconData,
+                size: 20,
+                color: iconColor,
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                title,
+                style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            title,
-            style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 
   @override
@@ -54,12 +59,13 @@ class _ProductDetailState extends State<ProductDetail> {
         ],
       ),
       appBar: AppBar(
+        backgroundColor: primaryColor,
         iconTheme: IconThemeData(
-          color: textColor,
+          color: Colors.white,
         ),
         title: Text(
           'Product Detail',
-          style: TextStyle(color: textColor),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Column(
@@ -72,7 +78,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 children: [
                   ListTile(
                     title: Text(
-                      'Fresh basil',
+                      widget.productName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -88,7 +94,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     height: 300,
                     padding: EdgeInsets.all(40),
                     child: Image.network(
-                        'https://thumbs.dreamstime.com/b/fresh-green-basil-leaves-closeup-perfect-fresh-basil-leaves-isolated-white-background-shadows-png-file-210754810.jpg'),
+                        widget.productImage),
                   ),
                   Container(
                     padding: EdgeInsets.all(20),
@@ -156,8 +162,7 @@ class _ProductDetailState extends State<ProductDetail> {
           Expanded(
             flex: 1,
             child: Container(
-              padding:
-                  EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               width: double.infinity,
               child: ListView(
                 children: [

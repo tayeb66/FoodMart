@@ -5,6 +5,8 @@ import 'package:food_mart/views/Product_View/product_detail.dart';
 import 'package:food_mart/views/drawer_page.dart';
 import 'package:food_mart/views/single_product.dart';
 
+import '../Search_Product/search_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -31,9 +33,13 @@ class _HomePageState extends State<HomePage> {
             CircleAvatar(
               backgroundColor: Color(0xFFA5D6A7),
               radius: 15.0,
-              child: Icon(
-                Icons.search,
-                size: 20,
+              child: IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchPage()));
+                },
+                iconSize: 20,
                 color: Colors.black,
               ),
             ),

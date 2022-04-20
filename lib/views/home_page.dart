@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   ProductProvider productProvider = ProductProvider();
 
   /// Initialize the class for one time.
-  /// Thats why use listen: false
+  /// That's why use listen: false
   @override
   void initState() {
     ProductProvider productProvider = Provider.of(context, listen: false);

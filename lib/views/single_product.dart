@@ -4,10 +4,11 @@ class SingleProduct extends StatelessWidget {
   /// Repeatedly using this fields for image,name,onTap
   final String productName;
   final String productImage;
+
+  /// final Function()? ontap; same both
   final VoidCallback? onTap;
   final int productPrice;
 
-  // final Function()? ontap; same both
 
   const SingleProduct(
       {Key? key,

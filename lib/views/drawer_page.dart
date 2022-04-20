@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_mart/Constant/constant.dart';
 import 'package:food_mart/views/Profile/my_profile_page.dart';
 import 'package:food_mart/views/home_page.dart';
+import 'package:food_mart/views/review_cart/review_cart_page.dart';
 
 class MyDrawer extends StatelessWidget {
   /// This method use Repeatedly for lisTile widget
@@ -101,7 +102,10 @@ class MyDrawer extends StatelessWidget {
           listTile(
               title: 'Review cart',
               iconData: Icons.shop_outlined,
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ReviewCartPage()));
+              }),
           listTile(
               title: 'Profile',
               iconData: Icons.person_outlined,

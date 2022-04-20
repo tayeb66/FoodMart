@@ -4,8 +4,7 @@ import 'package:food_mart/Constant/constant.dart';
 import 'package:food_mart/views/Product_View/product_detail.dart';
 import 'package:food_mart/views/drawer_page.dart';
 import 'package:food_mart/views/single_product.dart';
-
-import '../Search_Product/search_page.dart';
+import 'Search_Product/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -112,20 +112,24 @@ class _ProductDetailState extends State<ProductDetail> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CircleAvatar(
-                          radius: 3,
-                          backgroundColor: Colors.green[700],
-                        ),
-                        Radio(
-                          value: SingleCharacter.fill,
-                          groupValue: character,
-                          activeColor: Colors.green[700],
-                          onChanged: (value) {
-                            setState(() {
-                              value = character;
-                            });
-                          },
-                        ),
+                       Row(
+                         children: [
+                           CircleAvatar(
+                             radius: 3,
+                             backgroundColor: Colors.green[700],
+                           ),
+                           Radio(
+                             value: SingleCharacter.fill,
+                             groupValue: character,
+                             activeColor: Colors.green[700],
+                             onChanged: (value) {
+                               setState(() {
+                                 value = character;
+                               });
+                             },
+                           ),
+                         ],
+                       ),
                         Text('\$50'),
                         Container(
                           padding: EdgeInsets.symmetric(

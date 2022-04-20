@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_mart/Search_Product/search_item.dart';
+import 'package:food_mart/Widgets/single_item.dart';
 
-import '../Constant/constant.dart';
+import '../../Constant/constant.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -46,11 +46,21 @@ class SearchPage extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 12.0),
               child:Column(
                 children: [
-                  SearchItem(),
-                  SearchItem(),
-                  SearchItem(),
-                  SearchItem(),
-                  SearchItem(),
+                  SingleItem(
+                    isBool: false,
+                  ),
+                  SingleItem(
+                    isBool: false,
+                  ),
+                  SingleItem(
+                    isBool: false,
+                  ),
+                  SingleItem(
+                    isBool: false,
+                  ),
+                  SingleItem(
+                    isBool: false,
+                  ),
                 ],
               )),
         ],

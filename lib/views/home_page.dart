@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_mart/Constant/constant.dart';
+import 'package:food_mart/Provider/product_provider.dart';
 import 'package:food_mart/views/Product_View/product_detail.dart';
 import 'package:food_mart/views/drawer_page.dart';
 import 'package:food_mart/views/single_product.dart';
+import 'package:provider/provider.dart';
 import 'Search_Product/search_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,8 +16,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ProductProvider productProvider = ProductProvider();
+
+  /// Initialize the class for one time.
+  /// Thats why use listen: false
+  @override
+  void initState() {
+    ProductProvider productProvider = Provider.of(context, listen: false);
+    productProvider.fetchHerbsProduct();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    productProvider = Provider.of(context);
     return Scaffold(
         backgroundColor: bgColor,
 
@@ -150,75 +164,78 @@ class _HomePageState extends State<HomePage> {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
-                      /// Data show from SingleProduct Class
-                      SingleProduct(
-                          productImage:
-                              'https://thumbs.dreamstime.com/b/fresh-green-basil-'
-                              'leaves-closeup-perfect-fresh-basil-leaves-i'
-                              'solated-white-background-shadows-png-file-21'
-                              '0754810.jpg',
-                          productName: 'Fresh basil',
+                    children: productProvider.getHerbsProductList.map((herbsProduct) {
+                      return SingleProduct(
+                        productPrice: herbsProduct.productPrice,
+                          productImage: herbsProduct.productImage,
+                          productName: herbsProduct.productName,
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productName: 'Fresh mint',
-                                          productImage:
-                                              'https://thumbs.dreamstime.com/b/fresh-green-basil-'
-                                              'leaves-closeup-perfect-fresh-basil-leaves-i'
-                                              'solated-white-background-shadows-png-file-21'
-                                              '0754810.jpg',
+                                      productPrice: herbsProduct.productPrice,
+                                          productName: herbsProduct.productName,
+                                          productImage: herbsProduct.productImage,
                                         )));
-                          }),
-                      SingleProduct(
-                          productImage:
-                              'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=',
-                          productName: 'Fresh mint',
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProductDetail(
-                                        productName: 'Fresh Mint',
-                                        productImage:
-                                            'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=')));
-                          }),
-                      SingleProduct(
-                          productImage:
-                              'https://thumbs.dreamstime.com/b/fresh-green-basil-'
-                              'leaves-closeup-perfect-fresh-basil-leaves-i'
-                              'solated-white-background-shadows-png-file-21'
-                              '0754810.jpg',
-                          productName: 'Fresh basil',
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProductDetail(
-                                          productName: 'Fresh mint',
-                                          productImage:
-                                              'https://thumbs.dreamstime.com/b/fresh-green-basil-'
-                                              'leaves-closeup-perfect-fresh-basil-leaves-i'
-                                              'solated-white-background-shadows-png-file-21'
-                                              '0754810.jpg',
-                                        )));
-                          }),
-                      SingleProduct(
-                          productImage:
-                              'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=',
-                          productName: 'Fresh mint',
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProductDetail(
-                                        productName: 'Fresh Mint',
-                                        productImage:
-                                            'https://media.istockphoto.com/photos/fresh-leaf-mint-green-herbs-ingredient-picture-id1131562141?b=1&k=20&m=1131562141&s=170667a&w=0&h=GdY9vC8NqHqKMCCSI_AzerfcktU5N0x1WzyvRT2wqEE=')));
-                          }),
-                    ],
+                          });
+                    }).toList(),
+                    // children: [
+                    //   /// Data show from SingleProduct Class
+                    //   // SingleProduct(
+                    //   //     productImage:
+                    //   //         freshBasil,
+                    //   //     productName: 'Fresh basil',
+                    //   //     onTap: () {
+                    //   //       Navigator.push(
+                    //   //           context,
+                    //   //           MaterialPageRoute(
+                    //   //               builder: (context) => ProductDetail(
+                    //   //                     productName: 'Fresh basil',
+                    //   //                     productImage:
+                    //   //                         freshBasil,
+                    //   //                   )));
+                    //   //     }),
+                    //   // SingleProduct(
+                    //   //     productImage:
+                    //   //         freshMint,
+                    //   //     productName: 'Fresh mint',
+                    //   //     onTap: () {
+                    //   //       Navigator.push(
+                    //   //           context,
+                    //   //           MaterialPageRoute(
+                    //   //               builder: (context) => ProductDetail(
+                    //   //                   productName: 'Fresh Mint',
+                    //   //                   productImage:
+                    //   //                     freshMint)));
+                    //   //     }),
+                    //   // SingleProduct(
+                    //   //     productImage:
+                    //   //         freshBasil,
+                    //   //     productName: 'Fresh basil',
+                    //   //     onTap: () {
+                    //   //       Navigator.push(
+                    //   //           context,
+                    //   //           MaterialPageRoute(
+                    //   //               builder: (context) => ProductDetail(
+                    //   //                     productName: 'Fresh basil',
+                    //   //                     productImage:
+                    //   //                         freshBasil,
+                    //   //                   )));
+                    //   //     }),
+                    //   // SingleProduct(
+                    //   //     productImage:freshMint,
+                    //   //     productName: 'Fresh mint',
+                    //   //     onTap: () {
+                    //   //       Navigator.push(
+                    //   //           context,
+                    //   //           MaterialPageRoute(
+                    //   //               builder: (context) => ProductDetail(
+                    //   //                   productName: 'Fresh Mint',
+                    //   //                   productImage: freshMint,
+                    //   //               )));
+                    //   //     }),
+                    // ],
                   ),
                 ),
                 Padding(
@@ -245,58 +262,55 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       /// Data show from SingleProduct Class
                       SingleProduct(
-                          productImage:
-                              'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
+                        productPrice: 1,
+                          productImage: freshBerries,
                           productName: 'Fresh Berries',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                        productName: 'Fresh Berries',
-                                        productImage:
-                                            'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png')));
+                                          productName: 'Fresh Berries',
+                                          productImage: freshBerries, productPrice: 1,
+                                        )));
                           }),
                       SingleProduct(
-                          productImage:
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiYE8TB_MqtYOK3zH7YgvQp8W2NWf_6VsDTA&usqp=CAU',
+                          productPrice: 1,
+                          productImage: freshWaterMelon,
                           productName: 'Fresh watermelon',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productImage:
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiYE8TB_MqtYOK3zH7YgvQp8W2NWf_6VsDTA&usqp=CAU',
-                                          productName: 'Fresh watermelon',
+                                          productImage: freshWaterMelon,
+                                          productName: 'Fresh watermelon', productPrice: 1,
                                         )));
                           }),
                       SingleProduct(
-                          productImage:
-                              'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
+                          productPrice: 1,
+                          productImage: freshBerries,
                           productName: 'Fresh Berries',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productImage:
-                                              'https://www.kindpng.com/picc/m/191-1916444_download-berries-png-pic-mixed-berries-png-transparent.png',
-                                          productName: 'Fresh Berries',
+                                          productImage: freshBerries,
+                                          productName: 'Fresh Berries', productPrice: 1,
                                         )));
                           }),
                       SingleProduct(
-                          productImage:
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6nzTwfU1r9BwWCKe015gs515nRyp2alv5w&usqp=CAU',
+                          productPrice: 1,
+                          productImage: freshGrapes,
                           productName: 'Fresh Grapes',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productImage:
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6nzTwfU1r9BwWCKe015gs515nRyp2alv5w&usqp=CAU',
-                                          productName: 'Fresh Grapes',
+                                          productImage: freshGrapes,
+                                          productName: 'Fresh Grapes', productPrice: 1,
                                         )));
                           }),
                     ],
@@ -326,20 +340,20 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       /// Data show from SingleProduct Class
                       SingleProduct(
-                          productImage:
-                              'https://www.kindpng.com/picc/m/192-1921614_mango-pulp-and-juice-transparent-mango-fruit-png.png',
+                          productPrice: 1,
+                          productImage: freshMango,
                           productName: 'Fresh mango',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productImage:
-                                              'https://www.kindpng.com/picc/m/192-1921614_mango-pulp-and-juice-transparent-mango-fruit-png.png',
-                                          productName: 'Fresh mango',
+                                          productImage: freshMango,
+                                          productName: 'Fresh mango', productPrice: 1,
                                         )));
                           }),
                       SingleProduct(
+                          productPrice: 1,
                           productImage:
                               'https://5.imimg.com/data5/IP/BO/MY-40565349/litchi-fruit-500x500.jpg',
                           productName: 'Fresh lychee',
@@ -348,27 +362,25 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productImage:
-                                              'https://5.imimg.com/data5/IP/BO/MY-40565349/litchi-fruit-500x500.jpg',
-                                          productName: 'Fresh lychee',
+                                          productImage: freshLychee,
+                                          productName: 'Fresh lychee', productPrice: 1,
                                         )));
                           }),
                       SingleProduct(
-                          productImage:
-                              'https://www.kindpng.com/picc/m/206-2064665_apple-green-apple-red-apple-fresh-apple-fresh.png',
+                          productPrice: 1,
+                          productImage: freshApple,
                           productName: 'Fresh apple',
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                        productImage:
-                                            'https://www.kindpng.com/picc/m/206-2064665_apple-green-apple-red-apple-fresh-apple-fresh.png',
-                                        productName: 'Fresh apple')));
+                                        productImage: freshApple,
+                                        productName: 'Fresh apple', productPrice: 1,)));
                           }),
                       SingleProduct(
-                          productImage:
-                              'https://www.kindpng.com/picc/m/5-52713_transparent-orange-juice-png-orange-juice-png-png.png',
+                          productPrice: 1,
+                          productImage: freshOrange,
                           productName: 'Fresh orange',
                           onTap: () {
                             Navigator.push(
@@ -377,7 +389,7 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) => ProductDetail(
                                         productImage:
                                             'https://www.kindpng.com/picc/m/5-52713_transparent-orange-juice-png-orange-juice-png-png.png',
-                                        productName: 'Fresh orange')));
+                                        productName: 'Fresh orange', productPrice: 1,)));
                           }),
                     ],
                   ),

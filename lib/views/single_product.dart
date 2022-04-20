@@ -5,6 +5,7 @@ class SingleProduct extends StatelessWidget {
   final String productName;
   final String productImage;
   final VoidCallback? onTap;
+  final int productPrice;
 
   // final Function()? ontap; same both
 
@@ -12,6 +13,7 @@ class SingleProduct extends StatelessWidget {
       {Key? key,
       required this.productImage,
       required this.productName,
+        required this.productPrice,
       required this.onTap})
       : super(key: key);
 
@@ -54,7 +56,7 @@ class SingleProduct extends StatelessWidget {
 
                   /// Quantity & price
                   Text(
-                    '\$50/50 gram',
+                    '\$$productPrice/50 gram',
                     style: TextStyle(color: Colors.grey),
                   ),
 

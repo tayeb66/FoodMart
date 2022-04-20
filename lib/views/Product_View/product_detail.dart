@@ -6,9 +6,13 @@ enum SingleCharacter { fill, outline }
 class ProductDetail extends StatefulWidget {
   final String productName;
   final String productImage;
+  final int productPrice;
 
   const ProductDetail(
-      {Key? key, required this.productName, required this.productImage})
+      {Key? key,
+      required this.productName,
+      required this.productImage,
+      required this.productPrice})
       : super(key: key);
 
   @override
@@ -85,7 +89,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       textScaleFactor: 1.2,
                     ),
                     subtitle: Text(
-                      '\$50',
+                      '\$${widget.productPrice}',
                       textScaleFactor: 1.1,
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
@@ -93,8 +97,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   Container(
                     height: 300,
                     padding: EdgeInsets.all(40),
-                    child: Image.network(
-                        widget.productImage),
+                    child: Image.network(widget.productImage),
                   ),
                   Container(
                     padding: EdgeInsets.all(20),
@@ -112,25 +115,25 @@ class _ProductDetailState extends State<ProductDetail> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                       Row(
-                         children: [
-                           CircleAvatar(
-                             radius: 3,
-                             backgroundColor: Colors.green[700],
-                           ),
-                           Radio(
-                             value: SingleCharacter.fill,
-                             groupValue: character,
-                             activeColor: Colors.green[700],
-                             onChanged: (value) {
-                               setState(() {
-                                 value = character;
-                               });
-                             },
-                           ),
-                         ],
-                       ),
-                        Text('\$50'),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 3,
+                              backgroundColor: Colors.green[700],
+                            ),
+                            Radio(
+                              value: SingleCharacter.fill,
+                              groupValue: character,
+                              activeColor: Colors.green[700],
+                              onChanged: (value) {
+                                setState(() {
+                                  value = character;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        Text('\$${widget.productPrice}'),
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 30, vertical: 10),
@@ -181,7 +184,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     height: 20,
                   ),
                   Text(
-                    "of a customer. Wikipedi In marketing, a product is an object or system made available for consumer use; it is anything that can be offered to a market to satisfy the desire or need of a customer. Wikipedi",
+                    "of a customer. Wikipedia In marketing, a product is an object or system made available for consumer use; it is anything that can be offered to a market to satisfy the desire or need of a customer. Wikipedi",
                     style: TextStyle(
                       fontSize: 16,
                       color: textColor,

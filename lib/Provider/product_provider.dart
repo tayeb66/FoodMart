@@ -4,6 +4,24 @@ import 'package:food_mart/Models/product_model.dart';
 
 class ProductProvider extends ChangeNotifier {
   List<ProductModel> herbsProductList = [];
+  List<ProductModel> fruitsProductList = [];
+
+  fetchFruitsProduct() async{
+    List<ProductModel> listFruits = [];
+    QuerySnapshot querySnapshot1 =
+    await FirebaseFirestore.instance.collection('FreshFruits').get();
+    querySnapshot1.docs.forEach((element) {
+      ProductModel productModel1 = ProductModel(
+          productName: element.get('productName'),
+          productImage: element.get('productImage'),
+          productPrice: element.get('productPrice'));
+
+      listFruits.add(productModel1);
+
+    });
+    fruitsProductList = listFruits;
+    notifyListeners();
+  }
 
   /// this method using fetch data from FireStore
   fetchHerbsProduct() async {
@@ -29,5 +47,9 @@ class ProductProvider extends ChangeNotifier {
   /// for get data
   List<ProductModel>get getHerbsProductList{
     return herbsProductList;
+  }
+
+  List<ProductModel> get getFruitsProductList{
+    return fruitsProductList;
   }
 }

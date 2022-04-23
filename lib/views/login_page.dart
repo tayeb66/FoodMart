@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:food_mart/Auth_Controller/auth_controller.dart';
+import 'package:food_mart/Provider/login_user_provider.dart';
 import 'package:food_mart/views/home_page.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,9 +15,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   AuthController authController = AuthController();
+  LoginUserProvider loginUserProvider = LoginUserProvider();
 
   @override
   Widget build(BuildContext context) {
+    loginUserProvider = Provider.of<LoginUserProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(

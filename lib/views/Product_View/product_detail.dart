@@ -72,129 +72,132 @@ class _ProductDetailState extends State<ProductDetail> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      widget.productName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textScaleFactor: 1.2,
-                    ),
-                    subtitle: Text(
-                      '\$${widget.productPrice}',
-                      textScaleFactor: 1.1,
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Container(
-                    height: 300,
-                    padding: EdgeInsets.all(40),
-                    child: Image.network(widget.productImage),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    width: double.infinity,
-                    child: Text(
-                      'Available options',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500, color: textColor),
-                      textScaleFactor: 1.1,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 3,
-                              backgroundColor: Colors.green[700],
-                            ),
-                            Radio(
-                              value: SingleCharacter.fill,
-                              groupValue: character,
-                              activeColor: Colors.green[700],
-                              onChanged: (value) {
-                                setState(() {
-                                  value = character;
-                                });
-                              },
-                            ),
-                          ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        widget.productName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text('\$${widget.productPrice}'),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        textScaleFactor: 1.2,
+                      ),
+                      subtitle: Text(
+                        '\$${widget.productPrice}',
+                        textScaleFactor: 1.1,
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Container(
+                      height: 300,
+                      padding: EdgeInsets.all(40),
+                      child: Image.network(widget.productImage),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      width: double.infinity,
+                      child: Text(
+                        'Available options',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, color: textColor),
+                        textScaleFactor: 1.1,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Icon(
-                                Icons.add,
-                                size: 17,
-                                color: Colors.blue,
+                              CircleAvatar(
+                                radius: 3,
+                                backgroundColor: Colors.green[700],
                               ),
-                              SizedBox(
-                                width: 4,
+                              Radio(
+                                value: SingleCharacter.fill,
+                                groupValue: character,
+                                activeColor: Colors.green[700],
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = character;
+                                  });
+                                },
                               ),
-                              Text(
-                                'Add',
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              )
                             ],
                           ),
-                        ),
-                      ],
+                          Text('\$${widget.productPrice}'),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  size: 17,
+                                  color: Colors.blue,
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  'Add',
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              width: double.infinity,
-              child: ListView(
-                children: [
-                  Text(
-                    "About This Product",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                child: ListView(
+                  children: [
+                    Text(
+                      "About This Product",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "of a customer. Wikipedia In marketing, a product is an object or system made available for consumer use; it is anything that can be offered to a market to satisfy the desire or need of a customer. Wikipedi",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: textColor,
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ],
+                    Text(
+                      "of a customer. Wikipedia In marketing, a product is an object or system made available for consumer use; it is anything that can be offered to a market to satisfy the desire or need of a customer. Wikipedi",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: textColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -6,7 +6,10 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> herbsProductList = [];
   List<ProductModel> fruitsProductList = [];
 
+
+  /// this method using fetch data from FireStore
   fetchFruitsProduct() async{
+    /// store all fruitsProduct in this list
     List<ProductModel> listFruits = [];
     QuerySnapshot querySnapshot1 =
     await FirebaseFirestore.instance.collection('FreshFruits').get();
@@ -15,6 +18,7 @@ class ProductProvider extends ChangeNotifier {
           productName: element.get('productName'),
           productImage: element.get('productImage'),
           productPrice: element.get('productPrice'));
+
 
       listFruits.add(productModel1);
 
@@ -25,7 +29,7 @@ class ProductProvider extends ChangeNotifier {
 
   /// this method using fetch data from FireStore
   fetchHerbsProduct() async {
-    /// store all product in this list
+    /// store all herbsProduct in this list
     List<ProductModel> listProduct = [];
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('HerbsProduct').get();

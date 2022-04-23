@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   ProductProvider productProvider = ProductProvider();
 
-  /// Initialize the class for one time.
+  /// Initialize the provider class for one time.
   /// That's why use listen: false
   @override
   void initState() {
@@ -26,6 +26,12 @@ class _HomePageState extends State<HomePage> {
     productProvider.fetchFruitsProduct();
     super.initState();
   }
+
+  getAllProduct(){
+    productProvider.getHerbsProductList;
+    productProvider.getFruitsProductList;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.search),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SearchPage()));
+                      MaterialPageRoute(builder: (context) => SearchPage(listProduct: productProvider.getFruitsProductList,)));
                 },
                 iconSize: 20,
                 color: Colors.black,
@@ -151,9 +157,13 @@ class _HomePageState extends State<HomePage> {
                           'Herbs seasoning',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
-                        Text(
-                          'View all',
-                          style: TextStyle(color: Colors.black54),
+                        GestureDetector(
+                          onTap: () {
+                          },
+                          child: Text(
+                            'View all',
+                            style: TextStyle(color: Colors.black54),
+                          ),
                         ),
                       ],
                     ),
@@ -165,6 +175,9 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children:
+
+                        /// data store on fireStore using key-value pair
+                        /// that's why here uses map()
                         productProvider.getHerbsProductList.map((herbsProduct) {
                       return SingleProduct(
                           productPrice: herbsProduct.productPrice,
@@ -334,9 +347,12 @@ class _HomePageState extends State<HomePage> {
                           'Fresh fruits',
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
-                        Text(
-                          'View all',
-                          style: TextStyle(color: Colors.black54),
+                        GestureDetector(
+                          onTap: (){},
+                          child: Text(
+                            'View all',
+                            style: TextStyle(color: Colors.black54),
+                          ),
                         ),
                       ],
                     ),
@@ -356,10 +372,10 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                      productName: 'Fresh Berries',
-                                      productImage: freshBerries,
-                                      productPrice: 1,
-                                    )));
+                                          productName: 'Fresh Berries',
+                                          productImage: freshBerries,
+                                          productPrice: 1,
+                                        )));
                           });
                     }).toList(),
                     // children: [

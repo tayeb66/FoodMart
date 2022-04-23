@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_mart/Models/product_model.dart';
 import 'package:food_mart/Widgets/single_item.dart';
 
 import '../../Constant/constant.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  final List<ProductModel> listProduct;
+
+  const SearchPage({Key? key, required this.listProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +44,38 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 12.0),
-              child:Column(
-                children: [
-                  SingleItem(
+              margin: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                children: listProduct.map((data) {
+                  return SingleItem(
                     isBool: false,
-                  ),
-                  SingleItem(
-                    isBool: false,
-                  ),
-                  SingleItem(
-                    isBool: false,
-                  ),
-                  SingleItem(
-                    isBool: false,
-                  ),
-                  SingleItem(
-                    isBool: false,
-                  ),
-                ],
-              )),
+                  );
+                }).toList(),
+              ),
+              // child: Column(
+              //   children: [
+              //     SingleItem(
+              //       isBool: false,
+              //     ),
+              //     SingleItem(
+              //       isBool: false,
+              //     ),
+              //     SingleItem(
+              //       isBool: false,
+              //     ),
+              //     SingleItem(
+              //       isBool: false,
+              //     ),
+              //     SingleItem(
+              //       isBool: false,
+              //     ),
+              //   ],
+              // ),
+          ),
         ],
       ),
     );

@@ -4,7 +4,12 @@ import 'package:food_mart/Constant/constant.dart';
 class SingleItem extends StatelessWidget {
   bool isBool = false;
 
-  SingleItem({Key? key, required this.isBool}) : super(key: key);
+
+  SingleItem(
+      {Key? key,
+      required this.isBool,
+      })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +148,9 @@ class SingleItem extends StatelessWidget {
         isBool == false
             ? Container()
             : Divider(
-          thickness: 1,
-          color: Colors.black54,
-        ),
+                thickness: 1,
+                color: Colors.black54,
+              ),
       ],
     );
   }

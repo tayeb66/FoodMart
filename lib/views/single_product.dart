@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_mart/Widgets/count.dart';
 
 class SingleProduct extends StatelessWidget {
   /// Repeatedly using this fields for image,name,onTap
   final String productName;
   final String productImage;
 
-  /// final Function()? ontap; same both
+  /// final Function()? onTap; same both
   final VoidCallback? onTap;
   final int productPrice;
 
@@ -39,8 +40,8 @@ class SingleProduct extends StatelessWidget {
                 flex: 2,
                 child: Image.network(
                   productImage,
-                  height: 230,
-                  width: 160,
+                  // height: 230,
+                  // width: 160,
                   fit: BoxFit.cover,
                 )),
 
@@ -104,36 +105,7 @@ class SingleProduct extends StatelessWidget {
 
                           /// Button 2
                           Expanded(
-                              child: Container(
-                            height: 30,
-                            width: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.grey)),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Icon(
-                                  Icons.remove,
-                                  size: 20,
-                                  color: Colors.green,
-                                )),
-                                Expanded(
-                                    child: Text(
-                                  '1',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                  ),
-                                )),
-                                Expanded(
-                                    child: Icon(
-                                  Icons.add,
-                                  size: 20,
-                                  color: Colors.green,
-                                )),
-                              ],
-                            ),
-                          )),
+                              child: CountPage()),
                         ],
                       ),
                     ),

@@ -8,6 +8,7 @@ class SingleItem extends StatefulWidget {
   String productId;
   int productPrice;
   int productQuantity;
+  VoidCallback? onDelete;
 
 
   SingleItem(
@@ -17,7 +18,8 @@ class SingleItem extends StatefulWidget {
         required this.productImage,
         required this.productId,
         required this.productPrice,
-        required this.productQuantity
+        required this.productQuantity,
+        required this.onDelete,
       })
       : super(key: key);
 
@@ -121,9 +123,12 @@ class _SingleItemState extends State<SingleItem> {
                     )
                   : Column(
                       children: [
-                        Icon(
-                          Icons.delete,
-                          size: 30,
+                        GestureDetector(
+                          onTap: widget.onDelete,
+                          child: Icon(
+                            Icons.delete,
+                            size: 30,
+                          ),
                         ),
                         SizedBox(
                           height: 5,

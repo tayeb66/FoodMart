@@ -7,7 +7,45 @@ import 'package:provider/provider.dart';
 
 
 class ReviewCartPage extends StatelessWidget {
-  const ReviewCartPage({Key? key}) : super(key: key);
+  ReviewCartProvider reviewCartProvider = ReviewCartProvider();
+
+  showAlertDialog(BuildContext context, ReviewCartModel delete) {
+
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        /// The ID has to be deleted over and over again
+        reviewCartProvider.deleteReviewCartData(delete.cartId);
+        Navigator.pop(context);
+
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Delete CartItem"),
+      content: Text("Would you like to continue delete item?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +96,10 @@ class ReviewCartPage extends StatelessWidget {
                 ),
                 SingleItem(
                     isBool: true,
+                    /// Data come from ReviewModel class
+                   onDelete: () {
+                      showAlertDialog(context, reviewCartModel);
+                   },
                     productName: reviewCartModel.cartName,
                     productImage: reviewCartModel.cartImage,
                     productId: reviewCartModel.cartId,

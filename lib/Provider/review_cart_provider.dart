@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:food_mart/Models/review_cart_model.dart';
 
 class ReviewCartProvider extends ChangeNotifier {
-  /// This method add/set review data on fireStore
-  /// when user click on add button then review data save on fireStore
+  /// This method add/set reviewCart data on fireStore
+  /// when user click on add button then reviewCart data save on fireStore
   /// data save through with parameter
   void addCartReviewData(
       {required String cartName,
@@ -29,9 +29,9 @@ class ReviewCartProvider extends ChangeNotifier {
 
   /// Data store on MyReviewCartData docs.
   /// From there data fetch using this method
-
   List<ReviewCartModel> reviewCartDataList = [];
- void getReviewCartData() async {
+
+  void getReviewCartData() async {
     List<ReviewCartModel> cartList = [];
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('ReviewCartData')
@@ -52,11 +52,32 @@ class ReviewCartProvider extends ChangeNotifier {
     });
     reviewCartDataList = cartList;
     notifyListeners();
-
   }
 
   /// get all reviewCart data
-  List<ReviewCartModel> get getReviewCartDataList{
+  List<ReviewCartModel> get getReviewCartDataList {
     return reviewCartDataList;
   }
+
+  /// Review Data render on review_cart_page.dart
+  /// this method using delete review data
+  void deleteReviewCartData(cartId) {
+    FirebaseFirestore.instance
+        .collection('ReviewCartData')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('MyReviewCartData')
+        .doc(cartId)
+        .delete();
+    notifyListeners();
+  }
+
+  // void deleteReviewCartData(cartId) {
+  //   FirebaseFirestore.instance
+  //       .collection('ReviewCartData')
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .collection('MyReviewCartData')
+  //       .doc(cartId)
+  //       .delete();
+  //   notifyListeners();
+  // }
 }

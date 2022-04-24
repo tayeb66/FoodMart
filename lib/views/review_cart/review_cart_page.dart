@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:food_mart/Constant/constant.dart';
+import 'package:food_mart/Models/review_cart_model.dart';
+import 'package:food_mart/Provider/review_cart_provider.dart';
 import 'package:food_mart/Widgets/single_item.dart';
+import 'package:provider/provider.dart';
 
-import '../../Models/product_model.dart';
 
-class ReviewCartPage extends StatefulWidget {
-
+class ReviewCartPage extends StatelessWidget {
   const ReviewCartPage({Key? key}) : super(key: key);
 
   @override
-  State<ReviewCartPage> createState() => _ReviewCartPageState();
-}
-
-class _ReviewCartPageState extends State<ReviewCartPage> {
-  @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = ReviewCartProvider();
+    reviewCartProvider = Provider.of<ReviewCartProvider>(context);
+    reviewCartProvider.getReviewCartData();
     return Scaffold(
       bottomNavigationBar: ListTile(
         title: Text(
@@ -47,29 +46,29 @@ class _ReviewCartPageState extends State<ReviewCartPage> {
         backgroundColor: primaryColor,
         title: const Text('ReviewCartPage'),
       ),
-      body: ListView(
-
-        children: [
-          SizedBox(
-            height: 10,
-          ),
-          SingleItem(
-            isBool: true,
-          ),
-          SingleItem(
-            isBool: true,
-          ),
-          SingleItem(
-            isBool: true,
-          ),
-          SingleItem(
-            isBool: true,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
+      body: ListView.builder(
+          itemCount: reviewCartProvider.getReviewCartDataList.length,
+          itemBuilder: (context, index) {
+            ReviewCartModel reviewCartModel =
+                reviewCartProvider.getReviewCartDataList[index];
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                SingleItem(
+                    isBool: true,
+                    productName: reviewCartModel.cartName,
+                    productImage: reviewCartModel.cartImage,
+                    productId: reviewCartModel.cartId,
+                    productPrice: reviewCartModel.cartPrice,
+                    productQuantity: reviewCartModel.cartQuantity),
+                // SingleItem(isBool: true),
+                // SingleItem(isBool: true),
+                // SingleItem(isBool: true),
+              ],
+            );
+          }),
     );
   }
 }

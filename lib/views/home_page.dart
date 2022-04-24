@@ -49,13 +49,13 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SearchPage(
-                                listProduct:
-                                    productProvider.getFruitsProductList,
-                              )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => SearchPage(
+                  //               listProduct:
+                  //                   productProvider.getFruitsProductList,
+                  //             )));
                 },
                 iconSize: 20,
                 color: Colors.black,

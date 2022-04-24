@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_mart/Widgets/count.dart';
 
-class SingleProduct extends StatelessWidget {
+class SingleProduct extends StatefulWidget {
   /// Repeatedly using this fields for image,name,onTap
   final String productName;
   final String productImage;
@@ -21,10 +21,15 @@ class SingleProduct extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<SingleProduct> createState() => _SingleProductState();
+}
+
+class _SingleProductState extends State<SingleProduct> {
+  @override
   Widget build(BuildContext context) {
     /// Create like card using Container()
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
         height: 230,
@@ -40,7 +45,7 @@ class SingleProduct extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: Image.network(
-                  productImage,
+                  widget.productImage,
                   // height: 230,
                   // width: 160,
                   fit: BoxFit.cover,
@@ -53,13 +58,13 @@ class SingleProduct extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    productName,
+                    widget.productName,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
 
                   /// Quantity & price
                   Text(
-                    '\$$productPrice/50 gram',
+                    '\$${widget.productPrice}/50 gram',
                     style: TextStyle(color: Colors.grey),
                   ),
 
@@ -107,10 +112,10 @@ class SingleProduct extends StatelessWidget {
                           /// Button 2
                           Expanded(
                               child: CountPage(
-                            productName: productName,
-                            productImage: productImage,
-                            productId: productId,
-                            productPrice: productPrice,
+                            productName: widget.productName,
+                            productImage: widget.productImage,
+                            productId: widget.productId,
+                            productPrice: widget.productPrice,
                           )),
                         ],
                       ),

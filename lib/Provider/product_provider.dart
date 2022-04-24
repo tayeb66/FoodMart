@@ -19,6 +19,7 @@ class ProductProvider extends ChangeNotifier {
           productImage: element.get('productImage'),
           productPrice: element.get('productPrice'));
 
+      /// all item add on list using add() method
       listFruits.add(productModel1);
     });
     fruitsProductList = listFruits;
@@ -39,6 +40,7 @@ class ProductProvider extends ChangeNotifier {
           productImage: element.get('productImage'),
           productPrice: element.get('productPrice'));
 
+      /// all item add on list using add() method
       listProduct.add(productModel);
     });
 

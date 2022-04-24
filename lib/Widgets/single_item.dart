@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:food_mart/Constant/constant.dart';
 
-class SingleItem extends StatelessWidget {
+class SingleItem extends StatefulWidget {
   bool isBool = false;
+  String productName;
+  String productImage;
+  String productId;
+  int productPrice;
+  int productQuantity;
 
 
   SingleItem(
       {Key? key,
       required this.isBool,
+        required this.productName,
+        required this.productImage,
+        required this.productId,
+        required this.productPrice,
+        required this.productQuantity
       })
       : super(key: key);
 
+  @override
+  State<SingleItem> createState() => _SingleItemState();
+}
+
+class _SingleItemState extends State<SingleItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,10 +38,7 @@ class SingleItem extends StatelessWidget {
               // color: Colors.blue,
               child: Center(
                 child: Image.network(
-                    'https://thumbs.dreamstime.com/b/fresh-green-basil-'
-                    'leaves-closeup-perfect-fresh-basil-leaves-i'
-                    'solated-white-background-shadows-png-file-21'
-                    '0754810.jpg'),
+                   widget.productImage),
               ),
             )),
             Expanded(
@@ -34,7 +46,7 @@ class SingleItem extends StatelessWidget {
               height: 100,
               // color: Colors.deepOrange,
               child: Column(
-                mainAxisAlignment: isBool == false
+                mainAxisAlignment: widget.isBool == false
                     ? MainAxisAlignment.spaceAround
                     : MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,17 +54,17 @@ class SingleItem extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        'ProductName',
+                        widget.productName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: textColor),
                       ),
                       Text(
-                        '\$50/50gram',
+                        '\$${widget.productPrice}/50gram',
                         style: TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),
-                  isBool == false
+                  widget.isBool == false
                       ? Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           height: 35,
@@ -82,9 +94,9 @@ class SingleItem extends StatelessWidget {
               ),
             )),
             Expanded(
-              child: isBool == false
+              child: widget.isBool == false
                   ? Container(
-                      padding: isBool == false
+                      padding: widget.isBool == false
                           ? EdgeInsets.symmetric(horizontal: 12.0)
                           : EdgeInsets.only(left: 15, right: 15),
                       height: 40,
@@ -117,7 +129,7 @@ class SingleItem extends StatelessWidget {
                           height: 5,
                         ),
                         Container(
-                          padding: isBool == false
+                          padding: widget.isBool == false
                               ? EdgeInsets.symmetric(horizontal: 12.0)
                               : EdgeInsets.only(left: 15, right: 12),
                           height: 40,
@@ -145,7 +157,7 @@ class SingleItem extends StatelessWidget {
             ),
           ],
         ),
-        isBool == false
+        widget.isBool == false
             ? Container()
             : Divider(
                 thickness: 1,

@@ -6,22 +6,20 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> herbsProductList = [];
   List<ProductModel> fruitsProductList = [];
 
-
   /// this method using fetch data from FireStore
-  fetchFruitsProduct() async{
+  fetchFruitsProduct() async {
     /// store all fruitsProduct in this list
     List<ProductModel> listFruits = [];
     QuerySnapshot querySnapshot1 =
-    await FirebaseFirestore.instance.collection('FreshFruits').get();
+        await FirebaseFirestore.instance.collection('FreshFruits').get();
     querySnapshot1.docs.forEach((element) {
       ProductModel productModel1 = ProductModel(
+          productId: element.get('productId'),
           productName: element.get('productName'),
           productImage: element.get('productImage'),
           productPrice: element.get('productPrice'));
 
-
       listFruits.add(productModel1);
-
     });
     fruitsProductList = listFruits;
     notifyListeners();
@@ -36,24 +34,25 @@ class ProductProvider extends ChangeNotifier {
 
     querySnapshot.docs.forEach((element) {
       ProductModel productModel = ProductModel(
+          productId: element.get('productId'),
           productName: element.get('productName'),
           productImage: element.get('productImage'),
           productPrice: element.get('productPrice'));
 
       listProduct.add(productModel);
-
     });
+
     /// assign value
     herbsProductList = listProduct;
     notifyListeners();
   }
 
   /// for get data
-  List<ProductModel>get getHerbsProductList{
+  List<ProductModel> get getHerbsProductList {
     return herbsProductList;
   }
 
-  List<ProductModel> get getFruitsProductList{
+  List<ProductModel> get getFruitsProductList {
     return fruitsProductList;
   }
 }

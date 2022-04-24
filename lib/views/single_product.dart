@@ -5,17 +5,18 @@ class SingleProduct extends StatelessWidget {
   /// Repeatedly using this fields for image,name,onTap
   final String productName;
   final String productImage;
+  final int productPrice;
+  final String productId;
 
   /// final Function()? onTap; same both
   final VoidCallback? onTap;
-  final int productPrice;
-
 
   const SingleProduct(
       {Key? key,
+      required this.productId,
       required this.productImage,
       required this.productName,
-        required this.productPrice,
+      required this.productPrice,
       required this.onTap})
       : super(key: key);
 
@@ -105,7 +106,12 @@ class SingleProduct extends StatelessWidget {
 
                           /// Button 2
                           Expanded(
-                              child: CountPage()),
+                              child: CountPage(
+                            productName: productName,
+                            productImage: productImage,
+                            productId: productId,
+                            productPrice: productPrice,
+                          )),
                         ],
                       ),
                     ),

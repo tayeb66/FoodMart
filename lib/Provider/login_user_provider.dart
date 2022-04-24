@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 
 class LoginUserProvider extends ChangeNotifier {
   /// This method using set data on FireStore docs
+  /// When user click on loginWithGoogle data will save on fireStore
+  /// data save through with parameter
+
   void addUserData({
     required User? currentUser,
     required String? userName,

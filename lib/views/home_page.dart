@@ -27,15 +27,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  getAllProduct(){
-    productProvider.getHerbsProductList;
-    productProvider.getFruitsProductList;
-  }
-
-
   @override
   Widget build(BuildContext context) {
-    productProvider = Provider.of(context);
+    productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
         backgroundColor: bgColor,
 
@@ -55,8 +49,13 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SearchPage(listProduct: productProvider.getFruitsProductList,)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchPage(
+                                listProduct:
+                                    productProvider.getFruitsProductList,
+                              )));
                 },
                 iconSize: 20,
                 color: Colors.black,
@@ -158,8 +157,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         GestureDetector(
-                          onTap: () {
-                          },
+                          onTap: () {},
                           child: Text(
                             'View all',
                             style: TextStyle(color: Colors.black54),
@@ -180,6 +178,7 @@ class _HomePageState extends State<HomePage> {
                         /// that's why here uses map()
                         productProvider.getHerbsProductList.map((herbsProduct) {
                       return SingleProduct(
+                          productId: herbsProduct.productId,
                           productPrice: herbsProduct.productPrice,
                           productImage: herbsProduct.productImage,
                           productName: herbsProduct.productName,
@@ -196,62 +195,6 @@ class _HomePageState extends State<HomePage> {
                                         )));
                           });
                     }).toList(),
-                    // children: [
-                    //   /// Data show from SingleProduct Class
-                    //   // SingleProduct(
-                    //   //     productImage:
-                    //   //         freshBasil,
-                    //   //     productName: 'Fresh basil',
-                    //   //     onTap: () {
-                    //   //       Navigator.push(
-                    //   //           context,
-                    //   //           MaterialPageRoute(
-                    //   //               builder: (context) => ProductDetail(
-                    //   //                     productName: 'Fresh basil',
-                    //   //                     productImage:
-                    //   //                         freshBasil,
-                    //   //                   )));
-                    //   //     }),
-                    //   // SingleProduct(
-                    //   //     productImage:
-                    //   //         freshMint,
-                    //   //     productName: 'Fresh mint',
-                    //   //     onTap: () {
-                    //   //       Navigator.push(
-                    //   //           context,
-                    //   //           MaterialPageRoute(
-                    //   //               builder: (context) => ProductDetail(
-                    //   //                   productName: 'Fresh Mint',
-                    //   //                   productImage:
-                    //   //                     freshMint)));
-                    //   //     }),
-                    //   // SingleProduct(
-                    //   //     productImage:
-                    //   //         freshBasil,
-                    //   //     productName: 'Fresh basil',
-                    //   //     onTap: () {
-                    //   //       Navigator.push(
-                    //   //           context,
-                    //   //           MaterialPageRoute(
-                    //   //               builder: (context) => ProductDetail(
-                    //   //                     productName: 'Fresh basil',
-                    //   //                     productImage:
-                    //   //                         freshBasil,
-                    //   //                   )));
-                    //   //     }),
-                    //   // SingleProduct(
-                    //   //     productImage:freshMint,
-                    //   //     productName: 'Fresh mint',
-                    //   //     onTap: () {
-                    //   //       Navigator.push(
-                    //   //           context,
-                    //   //           MaterialPageRoute(
-                    //   //               builder: (context) => ProductDetail(
-                    //   //                   productName: 'Fresh Mint',
-                    //   //                   productImage: freshMint,
-                    //   //               )));
-                    //   //     }),
-                    // ],
                   ),
                 ),
                 Padding(
@@ -278,6 +221,7 @@ class _HomePageState extends State<HomePage> {
                     children: productProvider.getFruitsProductList
                         .map((fruitsProduct) {
                       return SingleProduct(
+                          productId: fruitsProduct.productId,
                           productPrice: fruitsProduct.productPrice,
                           productImage: fruitsProduct.productImage,
                           productName: fruitsProduct.productName,
@@ -286,55 +230,15 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productName: 'Fresh Berries',
-                                          productImage: freshBerries,
-                                          productPrice: 1,
+                                          productName:
+                                              fruitsProduct.productName,
+                                          productImage:
+                                              fruitsProduct.productImage,
+                                          productPrice:
+                                              fruitsProduct.productPrice,
                                         )));
                           });
                     }).toList(),
-                    // children: [
-                    //   /// Data show from SingleProduct Class
-                    //
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshWaterMelon,
-                    //       productName: 'Fresh watermelon',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshWaterMelon,
-                    //                       productName: 'Fresh watermelon', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshBerries,
-                    //       productName: 'Fresh Berries',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshBerries,
-                    //                       productName: 'Fresh Berries', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshGrapes,
-                    //       productName: 'Fresh Grapes',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshGrapes,
-                    //                       productName: 'Fresh Grapes', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    // ],
                   ),
                 ),
                 Padding(
@@ -348,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontWeight: FontWeight.w500),
                         ),
                         GestureDetector(
-                          onTap: (){},
+                          onTap: () {},
                           child: Text(
                             'View all',
                             style: TextStyle(color: Colors.black54),
@@ -364,6 +268,7 @@ class _HomePageState extends State<HomePage> {
                     children: productProvider.getFruitsProductList
                         .map((fruitsProduct) {
                       return SingleProduct(
+                          productId: fruitsProduct.productId,
                           productPrice: fruitsProduct.productPrice,
                           productImage: fruitsProduct.productImage,
                           productName: fruitsProduct.productName,
@@ -372,55 +277,15 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetail(
-                                          productName: 'Fresh Berries',
-                                          productImage: freshBerries,
-                                          productPrice: 1,
+                                          productName:
+                                              fruitsProduct.productName,
+                                          productImage:
+                                              fruitsProduct.productImage,
+                                          productPrice:
+                                              fruitsProduct.productPrice,
                                         )));
                           });
                     }).toList(),
-                    // children: [
-                    //   /// Data show from SingleProduct Class
-                    //
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshWaterMelon,
-                    //       productName: 'Fresh watermelon',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshWaterMelon,
-                    //                       productName: 'Fresh watermelon', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshBerries,
-                    //       productName: 'Fresh Berries',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshBerries,
-                    //                       productName: 'Fresh Berries', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    //   SingleProduct(
-                    //       productPrice: 1,
-                    //       productImage: freshGrapes,
-                    //       productName: 'Fresh Grapes',
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => ProductDetail(
-                    //                       productImage: freshGrapes,
-                    //                       productName: 'Fresh Grapes', productPrice: 1,
-                    //                     )));
-                    //       }),
-                    // ],
                   ),
                 ),
               ],
